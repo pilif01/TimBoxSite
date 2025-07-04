@@ -1,0 +1,715 @@
+/* Paleta de culori și fonturi moderne */
+:root {
+    --primary-color: #5B8FF9;   /* Un albastru vibrant, dar profesional */
+    --secondary-color: #00BFB2; /* Un verde teal modern */
+    --accent-color: #A347FF;    /* Un violet energic pentru accente */
+    --dark-bg-color: #1A202C;   /* Culoare de fundal închisă (ex: navbar, footer) */
+    --medium-bg-color: #2D3748; /* O nuanță mai deschisă de închis */
+    --light-bg-color: #F8F9FA;  /* Aproape alb, pentru fundalul secțiunilor */
+    --light-bg-color-rgb: 248, 249, 250; /* Versiune RGB pentru rgba() */
+    --primary-color-rgb: 91, 143, 249; /* Versiune RGB pentru primary-color */
+    --secondary-color-rgb: 0, 191, 178; /* Versiune RGB pentru secondary-color */
+    --text-dark: #2C3E50;       /* Culoare principală pentru textul închis */
+    --text-light: #ECF0F1;      /* Culoare principală pentru textul deschis */
+
+    --poppins-font: 'Poppins', sans-serif; /* Font pentru titluri */
+    --inter-font: 'Inter', sans-serif;     /* Font pentru corpul textului */
+}
+
+/* Reset de bază și setări globale pentru body */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--inter-font); /* Aplică fontul Inter pentru întregul body */
+    line-height: 1.7; /* Spațiere între linii pentru lizibilitate */
+    color: var(--text-dark);
+    min-height: 100vh; /* Asigură că body ocupă cel puțin toată înălțimea vizibilă */
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Previne scroll orizontal nedorit */
+}
+
+/* Centrare container general */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Stiluri generale pentru link-uri */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Eliminare stil implicit pentru liste */
+ul {
+    list-style: none;
+}
+
+/* Fundal animat pentru body */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Asigură că este în spatele conținutului */
+    /* Gradient ajustat pentru a fi mai vizibil */
+    background: linear-gradient(135deg, #1A253A, #2C405A, #4A6080, #3D6B9F, #1A253A);
+    background-size: 300% 300%; /* Mărește dimensiunea pentru a permite animația */
+    animation: gradientShift 15s ease infinite alternate; /* Viteză crescută (15s) și animație alternativă */
+}
+
+/* Animația gradientului */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Antet (Header) și Navigație */
+.navbar {
+    background: var(--dark-bg-color);
+    color: var(--text-light);
+    padding: 15px 0;
+    position: sticky; /* Face navigația să rămână vizibilă la scroll */
+    top: 0;
+    z-index: 1000; /* Asigură că este deasupra altor elemente */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-family: var(--poppins-font);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.navbar .nav-links {
+    display: flex;
+}
+
+.navbar .nav-links li {
+    margin-left: 25px;
+}
+
+.navbar .nav-links a {
+    color: var(--text-light);
+    font-weight: 600;
+    padding: 8px 0;
+    position: relative; /* Pentru efectul de underline animat */
+}
+
+/* Underline animat pentru link-uri navigație */
+.navbar .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-out;
+}
+
+.navbar .nav-links a:hover::after {
+    width: 100%;
+}
+.navbar .nav-links a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* Buton meniu Hamburger (vizibil doar pe mobil) */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+/* Secțiunea Hero (Pagina Principală) */
+.hero-section {
+    /* Fundal imagine cu overlay gradient pentru contrast */
+    background: linear-gradient(135deg, rgba(26, 32, 44, 0.9), rgba(45, 55, 72, 0.9)), url('https://via.placeholder.com/1500x700/2D3748/ECF0F1?text=TimBox+Depozitare') no-repeat center center/cover;
+    color: var(--text-light);
+    text-align: center; /* Centrează textul din interior */
+    padding: 120px 20px; /* Padding simetric pe orizontală */
+    display: flex;
+    flex-direction: column; /* Aranjează elementele pe coloană */
+    justify-content: center; /* Centrează vertical conținutul */
+    align-items: center; /* Centrează orizontal elementele flex (h1, p, btn-cta) */
+    min-height: 600px;
+    box-shadow: inset 0 -8px 20px rgba(0,0,0,0.3);
+}
+
+.hero-section h1 {
+    font-family: var(--poppins-font);
+    font-size: 4.5rem;
+    margin-bottom: 25px;
+    text-shadow: 4px 4px 10px rgba(0,0,0,0.8); /* Umbră puternică pentru text */
+    letter-spacing: 1px;
+    display: block; /* Asigură comportament de bloc */
+    width: 100%; /* Ocupă lățimea disponibilă */
+    max-width: 900px; /* Limitează lățimea pentru lizibilitate */
+    text-align: center; /* Asigură că textul din H1 este centrat în propria sa cutie */
+    margin: 0 auto 25px auto; /* Centrează blocul H1 orizontal și dă spațiu jos */
+}
+
+.hero-section p {
+    font-family: var(--inter-font);
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6); /* Umbră subtilă pentru text */
+    max-width: 700px; /* Limitează lățimea pentru lizibilitate (textul este scurt) */
+    display: block; /* Asigură comportament de bloc */
+    width: 100%; /* Ocupă lățimea disponibilă */
+    text-align: center; /* Centrează textul din interiorul paragrafului */
+    margin: 0 auto 40px auto; /* Centrează blocul p orizontal și dă spațiu jos */
+}
+
+/* Stiluri generale pentru butoane CTA (Call To Action) */
+.btn-cta {
+    display: inline-block; /* Permite setarea lățimii/padding-ului */
+    background: var(--secondary-color);
+    color: #fff;
+    padding: 18px 40px;
+    border-radius: 50px; /* Buton rotunjit */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden; /* Ascunde efectele ce depășesc butonul */
+    margin: 0 auto; /* Centrează butonul ca bloc orizontal */
+}
+
+.btn-cta:hover {
+    background: var(--primary-color);
+    transform: translateY(-5px); /* Efect de ridicare */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* Efect de "burst" la hover pe butoane */
+.btn-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: 0;
+}
+
+.btn-cta:hover::before {
+    width: 300%;
+    height: 300%;
+}
+
+/* Stiluri pentru secțiunile de conținut (cutiile albe principale) */
+main {
+    position: relative;
+    z-index: 1; /* Asigură că main este deasupra pseudo-elementului body::before */
+    flex-grow: 1; /* Permite main să ocupe spațiul disponibil */
+}
+
+.content-section {
+    padding: 60px 40px; /* Padding interior consistent */
+    text-align: center;
+    /* Opacitate ajustată pentru a lăsa gradientul să se vadă mai mult */
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 30px auto; /* Spațiu vertical și centrare orizontală */
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 2; /* Asigură că secțiunile sunt deasupra body::before și a main */
+    overflow: hidden;
+    width: 90%; /* Lățime responsivă */
+    max-width: 1500px; /* Lățime maximă mărită cu 25% */
+}
+
+.content-section:last-of-type {
+    margin-bottom: 30px; /* Asigură spațiu și sub ultima secțiune */
+}
+
+.content-section h2 {
+    font-family: var(--poppins-font);
+    font-size: 3.5rem;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.15);
+    letter-spacing: 0.5px;
+}
+
+.content-section p {
+    font-family: var(--inter-font);
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    max-width: 850px; /* Limitează lățimea textului pentru lizibilitate */
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-dark);
+}
+
+/* Fundal gri pentru anumite secțiuni (ex: Servicii, Despre Noi) */
+.grey-bg {
+    /* Opacitate ajustată pentru a lăsa gradientul să se vadă mai mult */
+    background-color: rgba(var(--light-bg-color-rgb), 0.95);
+}
+
+/* Stiluri specifice pentru butonul mare din formular (Hook & Formular) */
+.btn-cta.large-btn {
+    padding: 20px 50px;
+    font-size: 1.3rem;
+    margin-top: 30px;
+}
+
+/* Secțiunea Servicii (Grid) */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 320px este lățimea minimă a unui card */
+    gap: 50px; /* Spațiul dintre cardurile de servicii */
+    margin-top: 60px;
+    padding: 0 30px; /* Padding lateral pentru grid */
+}
+
+/* Carduri individuale de Servicii */
+.service-item {
+    background: #fff;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    text-align: left;
+    /* Tranziții fluide pentru hover */
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.5s ease;
+    border-bottom: 5px solid var(--secondary-color); /* Bordură accent */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+}
+
+.service-item:hover {
+    transform: translateY(-15px) scale(1.02); /* Efect de ridicare și scalare */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3); /* Umbră mai mare la hover */
+    border-color: var(--primary-color); /* Schimbă culoarea bordurii */
+}
+
+.service-item h3 {
+    font-family: var(--poppins-font);
+    color: var(--primary-color);
+    margin-bottom: 18px;
+    font-size: 2rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.service-item ul {
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.service-item ul li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    position: relative;
+    padding-left: 30px; /* Spațiu pentru iconița de tick */
+}
+
+/* Iconița de tick pentru elementele din listă */
+.service-item ul li::before {
+    content: "\f00c"; /* Codul pentru iconița de checkmark */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; /* Necesar pentru iconițele Font Awesome Solid */
+    color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+    top: 4px;
+    font-size: 1.1em;
+}
+
+.service-item p {
+    font-family: var(--inter-font);
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 0;
+}
+
+/* Stiluri pentru iconițele mari din cardurile de servicii */
+.service-icon {
+    font-size: 4.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: rgba(var(--secondary-color-rgb), 0.1); /* Fundal semi-transparent pentru icon */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover .service-icon {
+    transform: rotate(5deg) scale(1.1); /* Efect de rotație și scalare la hover */
+}
+
+/* Secțiunea Localizare (Hartă) */
+.map-placeholder {
+    margin-top: 40px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid #ddd;
+}
+
+.map-placeholder iframe {
+    width: 100%;
+    height: 550px; /* Înălțime mărită pentru hartă */
+    border: 0;
+}
+
+/* Stiluri noi pentru secțiunea Despre Noi & Contact */
+/* Grile pentru cardurile Despre Noi și Contact */
+.about-content-grid,
+.contact-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Carduri responsive */
+    gap: 30px; /* Spațiu între carduri */
+    margin-top: 40px;
+    padding: 0 10px; /* Padding interior pentru grilă */
+}
+
+/* Carduri individuale în secțiunea Despre Noi */
+.about-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 5px solid var(--primary-color); /* Un accent de culoare la partea de sus */
+}
+
+.about-card:hover {
+    transform: translateY(-8px); /* Efect de ridicare la hover */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2); /* Umbră mai pronunțată */
+}
+
+.about-card h3 {
+    font-family: var(--poppins-font);
+    color: var(--dark-bg-color); /* Titlurile cardurilor "Despre Noi" */
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.about-card p {
+    font-family: var(--inter-font);
+    font-size: 1.05rem;
+    color: #555;
+    margin-bottom: 0;
+}
+
+/* Carduri individuale pentru Contact (Telefon, Email) */
+.contact-details-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Carduri puțin mai mici pentru contact */
+    gap: 25px;
+    margin-top: 30px;
+    padding: 0 10px;
+}
+
+.contact-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    text-align: center; /* Textul din cardurile de contact centrat */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 4px solid var(--secondary-color); /* Accent de culoare la partea de jos */
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.contact-card .contact-icon {
+    font-size: 3rem; /* Iconițe mai mari pentru contact */
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(var(--primary-color-rgb), 0.1); /* Fundal semi-transparent pentru icon */
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-card h3 {
+    font-family: var(--poppins-font);
+    color: var(--dark-bg-color);
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+.contact-card p {
+    font-family: var(--inter-font);
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0;
+}
+
+.contact-card p a {
+    font-weight: 600; /* Link-urile din contact vor fi bold */
+    color: var(--primary-color);
+}
+.contact-card p a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+
+/* Subsol (Footer) */
+footer {
+    background: var(--dark-bg-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 50px 0;
+    margin-top: 60px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.4);
+}
+
+footer p {
+    font-family: var(--inter-font);
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* Responsive Design (Media Queries) */
+/* Stiluri pentru ecrane cu lățime maximă de 992px (tablete mari, laptopuri) */
+@media (max-width: 992px) {
+    .hero-section h1 {
+        font-size: 3.5rem;
+    }
+    .hero-section p {
+        font-size: 1.3rem;
+    }
+    .content-section {
+        padding: 50px 30px; /* Ajustează padding-ul lateral */
+        max-width: 95%; /* Lățime maximă puțin mai mare */
+    }
+    .content-section h2 {
+        font-size: 3rem;
+    }
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+    }
+    .service-item h3 {
+        font-size: 1.8rem;
+    }
+    .service-icon {
+        font-size: 4rem;
+        width: 90px;
+        height: 90px;
+    }
+    .map-placeholder iframe {
+        height: 450px;
+    }
+    /* Ajustări responsive pentru noile grile Despre Noi și Contact */
+    .about-content-grid,
+    .contact-details-grid {
+        gap: 25px;
+    }
+    .about-card {
+        padding: 25px;
+    }
+    .about-card h3 {
+        font-size: 1.6rem;
+    }
+    .contact-card {
+        padding: 20px;
+    }
+    .contact-card .contact-icon {
+        font-size: 2.5rem;
+        width: 60px;
+        height: 60px;
+    }
+    .contact-card h3 {
+        font-size: 1.4rem;
+    }
+}
+
+/* Stiluri pentru ecrane cu lățime maximă de 768px (tablete mici, telefoane mari) */
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        display: none; /* Ascunde meniul implicit */
+        flex-direction: column;
+        width: 100%;
+        background: var(--dark-bg-color);
+        position: absolute;
+        top: 70px; /* Poziționează sub navigație */
+        left: 0;
+        padding: 25px 0;
+    }
+    .navbar .nav-links.active {
+        display: flex; /* Afișează meniul când are clasa 'active' */
+    }
+    .navbar .nav-links li {
+        margin: 15px 0;
+    }
+    .menu-toggle {
+        display: block; /* Afișează iconița hamburger */
+    }
+    .hero-section {
+        padding: 100px 15px; /* Reducem padding-ul lateral */
+        min-height: 500px;
+    }
+    .hero-section h1 {
+        font-size: 3rem;
+    }
+    .hero-section p {
+        font-size: 1.2rem;
+    }
+    .content-section {
+        padding: 40px 20px;
+        width: 95%; /* Ocupă mai multă lățime */
+        margin: 25px auto;
+    }
+    .content-section h2 {
+        font-size: 2.5rem;
+    }
+    .form-container {
+        padding: 30px;
+    }
+    .btn-cta.large-btn {
+        padding: 15px 35px;
+        font-size: 1.1rem;
+    }
+    .services-grid {
+        gap: 30px;
+        padding: 0 15px;
+    }
+    .service-item {
+        padding: 30px;
+    }
+    .service-icon {
+        font-size: 3.5rem;
+        width: 80px;
+        height: 80px;
+    }
+    .service-item h3 {
+        font-size: 1.6rem;
+    }
+    .service-item ul li, .service-item p {
+        font-size: 1rem;
+    }
+    .map-placeholder iframe {
+        height: 350px;
+    }
+    /* Ajustări responsive pentru noile grile Despre Noi și Contact */
+    .about-content-grid,
+    .contact-details-grid {
+        grid-template-columns: 1fr; /* O singură coloană pe mobil */
+        gap: 20px;
+    }
+    .about-card {
+        padding: 20px;
+    }
+    .about-card h3 {
+        font-size: 1.5rem;
+    }
+    .contact-card {
+        padding: 18px;
+    }
+    .contact-card .contact-icon {
+        font-size: 2.2rem;
+        width: 55px;
+        height: 55px;
+    }
+    .contact-card h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Stiluri pentru ecrane cu lățime maximă de 480px (telefoane mici) */
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 80px 10px;
+    }
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    .hero-section p {
+        font-size: 1rem;
+    }
+    .btn-cta {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    .content-section {
+        padding: 30px 15px;
+        width: 98%;
+        margin: 20px auto;
+    }
+    .content-section h2 {
+        font-size: 2rem;
+    }
+    .form-container {
+        padding: 20px;
+    }
+    .services-grid {
+        grid-template-columns: 1fr; /* O singură coloană */
+        gap: 20px;
+    }
+    .service-item {
+        padding: 25px;
+    }
+    .service-icon {
+        font-size: 3rem;
+        width: 70px;
+        height: 70px;
+    }
+    .service-item h3 {
+        font-size: 1.5rem;
+    }
+    .map-placeholder iframe {
+        height: 280px;
+    }
+    /* Ajustări responsive pentru noile grile Despre Noi și Contact */
+    .about-content-grid,
+    .contact-details-grid {
+        padding: 0; /* Elimină padding-ul de pe grid */
+    }
+}
