@@ -18,55 +18,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Gestionarea formularului de contact
-    const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
+    // Note: Your contact form handling code here (getElementById('contactForm'))
+    // seems to be for an *internal* form. Since you're now linking to a Google Form,
+    // this specific block of JS for form submission simulation might not be needed
+    // unless you plan to add an internal form later. I'll leave it as is,
+    // but keep in mind it's currently unused for the Google Forms link.
+
+    // Gestionarea formularului de contact (This part might be removed if only Google Forms are used)
+    const contactForm = document.getElementById('contactForm'); // This ID doesn't exist in your HTML now
+    const formMessage = document.getElementById('formMessage'); // This ID doesn't exist in your HTML now
 
     if (contactForm && formMessage) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault(); // Oprește reîncărcarea paginii
 
-            // Aici ar trebui să trimiți datele formularului către un server (backend)
-            // Pentru acest exemplu, vom simula o trimitere reușită/eșuată
-
             const nume = document.getElementById('nume').value;
             const email = document.getElementById('email').value;
             const mesaj = document.getElementById('mesaj').value;
 
-            // Validare simplă
             if (nume === '' || email === '' || mesaj === '') {
                 displayMessage('Toate câmpurile sunt obligatorii!', 'error');
                 return;
             }
 
-            // Simulează o întârziere pentru a arăta o procesare
-            formMessage.classList.add('hidden'); // Ascunde mesajul anterior
-            displayMessage('Se trimite...', 'info'); // Poți adăuga o clasă 'info' în CSS
+            formMessage.classList.add('hidden');
+            displayMessage('Se trimite...', 'info');
 
             setTimeout(() => {
-                const success = Math.random() > 0.3; // 70% șanse de succes
+                const success = Math.random() > 0.3;
 
                 if (success) {
                     displayMessage('Mesajul a fost trimis cu succes! Vă mulțumim.', 'success');
-                    contactForm.reset(); // Golește formularul
+                    contactForm.reset();
                 } else {
                     displayMessage('A apărut o eroare la trimitere. Vă rugăm să încercați din nou.', 'error');
                 }
-            }, 2000); // Simulează 2 secunde de procesare
+            }, 2000);
         });
     }
 
     function displayMessage(message, type) {
-        formMessage.textContent = message;
-        formMessage.className = ''; // Resetează clasele
-        formMessage.classList.add(type);
-        formMessage.classList.remove('hidden');
+        // This function will only be called if the `contactForm` and `formMessage` elements exist.
+        // As per the HTML changes, they are no longer there for the external Google Form link.
+        if (formMessage) { // Added a check to prevent errors
+            formMessage.textContent = message;
+            formMessage.className = '';
+            formMessage.classList.add(type);
+            formMessage.classList.remove('hidden');
 
-        // Ascunde mesajul după 5 secunde, cu excepția erorilor
-        if (type !== 'error') {
-            setTimeout(() => {
-                formMessage.classList.add('hidden');
-            }, 5000);
+            if (type !== 'error') {
+                setTimeout(() => {
+                    formMessage.classList.add('hidden');
+                }, 5000);
+            }
         }
     }
 
